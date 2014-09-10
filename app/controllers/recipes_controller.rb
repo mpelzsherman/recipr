@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.paginate(:page => params[:page], :per_page => 4)
+    @recipes = Recipe.search(params[:search]).paginate(:page => params[:page], :per_page => 4)
   end
 
   # GET /recipes/1
