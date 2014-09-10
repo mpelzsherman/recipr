@@ -3,7 +3,7 @@ class Recipe < ActiveRecord::Base
     if search
       where('name LIKE ? OR ingredients LIKE ?', "%#{search}%", "%#{search}%")
     else
-      scoped
+      all
     end
   end
 end
