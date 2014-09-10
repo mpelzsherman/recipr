@@ -1,0 +1,23 @@
+= form_for @recipe, html: { class: "form form-horizontal recipe" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, class: 'form-control', required: true
+    = error_span(@recipe[:name])
+  .form-group
+    = f.label :ingredients, class: 'control-label'
+    .controls
+      = f.text_field :ingredients, class: 'form-control', required: true
+    = error_span(@recipe[:ingredients])
+  .form-group
+    = f.label :difficulty, class: 'control-label'
+    .controls
+      = f.text_field :difficulty, class: 'form-control', required: true
+    = error_span(@recipe[:difficulty])
+  .form-group
+    = f.label :directions, class: 'control-label'
+    .controls
+      = f.text_field :directions, class: 'form-control', required: true
+    = error_span(@recipe[:directions])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), recipes_path, :class => 'btn btn-default'
