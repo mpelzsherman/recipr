@@ -1,10 +1,11 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.search(params[:search]).paginate(:page => params[:page], :per_page => 4)
+    @recipes = Recipe.search(params[:search]).order("#{sort_column} #{sort_direction}").paginate(:page => params[:page], :per_page => 4)
   end
 
   # GET /recipes/1
@@ -70,5 +71,13 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
       params.require(:recipe).permit(:name, :ingredients, :difficulty, :directions)
+    end
+
+    def sort_column
+      Recipe.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

@@ -5,22 +5,22 @@
   = content_tag :label do
     Search term:
     = text_field_tag :search, params[:search]
+    = hidden_field_tag :direction, params[:direction]
+    = hidden_field_tag :sort, params[:sort]
 = will_paginate @recipes, class: 'digg_pagination'
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:ingredients)
-      %th= model_class.human_attribute_name(:difficulty)
-      %th= model_class.human_attribute_name(:directions)
-      %th= model_class.human_attribute_name(:created_at)
+      %th= sortable 'name'
+      %th= 'Ingredients'
+      %th= sortable 'difficulty'
+      %th= 'Directions'
+      %th= sortable 'created_at'
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @recipes.each do |recipe|
       %tr
-        %td= link_to recipe.id, recipe_path(recipe)
-        %td= recipe.name
+        %td= link_to recipe.name, recipe_path(recipe)
         %td= recipe.ingredients
         %td= recipe.difficulty
         %td= recipe.directions

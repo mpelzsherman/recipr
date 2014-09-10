@@ -34,6 +34,7 @@ gem "haml"
 gem "haml-rails"
 
 gem 'will_paginate'
+gem 'jquery-rails'
 
 group :development do
   gem 'seed_dump'
