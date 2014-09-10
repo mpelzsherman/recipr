@@ -33,6 +33,8 @@ gem "twitter-bootstrap-rails"
 gem "haml"
 gem "haml-rails"
 
+gem 'will_paginate'
+
 group :development do
   gem 'seed_dump'
 end
